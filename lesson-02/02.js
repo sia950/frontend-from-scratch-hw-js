@@ -7,8 +7,8 @@
 * Для успешного прохождения тестов не меняйте названия переменных!
 */
 
-let dice1 = Math.floor(Math.random()*7)// your code
-let dice2 = Math.floor(Math.random()*7) // your code
+let dice1 = Math.floor((Math.random()*6)+1)// your code
+let dice2 = Math.floor((Math.random()*6)+1) // your code
 let isWinningDouble = ((dice1===dice2)&&(dice1&&dice2>3))? true : false // your code
 
 
@@ -19,3 +19,4 @@ if (isWinningDouble) {
 } else {
   console.log('Не выигрышный дубль.')
 }
+
