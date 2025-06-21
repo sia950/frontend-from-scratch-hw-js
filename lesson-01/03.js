@@ -14,7 +14,7 @@ while (a < b) {
   if (a % 2 === 0) {
   } else {
 
-    sum = sum + a
+    sum += a
   }
 }
 console.log(sum)
