@@ -8,7 +8,7 @@ function findLargest(a,b,c) {
   }else if(c>b&&c>a){
     return c
   }else{
-    console.log("Please enter correct number")
+    return a
   }
 }
 
