@@ -4,4 +4,3 @@ function calculateAverage(first, second) {
     let total = (first + second)/2;
     console.log(total)
 }
- calculateAverage(8, 9)
