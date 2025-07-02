@@ -1,5 +1,6 @@
 /*
-Напишите функцию `doubleEachCharacter`, которая принимает строку и возвращает новую строку, где каждый символ из исходной строки повторяется дважды.
+Напишите функцию `doubleEachCharacter`, которая принимает строку и возвращает новую строку,
+где каждый символ из исходной строки повторяется дважды.
 
 Входные данные:
 
@@ -12,4 +13,12 @@
 Пример работы функции: `doubleEachCharacter('hello')` вернёт `'hheelllloo'`
 */
 
-function doubleEachCharacter() {}
+function doubleEachCharacter(word) {
+    let newWord = ""
+    for (let i = 0; i < word.length; i++) {
+        newWord = newWord + word[i] + word[i]
+    }
+    return newWord
+}
+// const output = doubleEachCharacter("hello")
+// console.log(output)
