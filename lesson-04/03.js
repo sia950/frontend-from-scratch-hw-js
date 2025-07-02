@@ -26,5 +26,6 @@ function findCommonElements(firstArray, secondArray) {
     }
     return newArray
 }
-// const hhhhh = findCommonElements([1, 2, 3], [2, 3, 4])
+// const hhhhh = 
+findCommonElements([1, 2, 3], [2, 3, 4])
 // console.log(hhhhh)
