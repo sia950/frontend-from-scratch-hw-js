@@ -10,10 +10,20 @@
 3. Если ресурс существует, метод должен добавлять значение `amount` к текущему количеству этого ресурса в объекте.
 */
 
+
 const game = {
   resources: {
     gold: 250,
     lumber: 100,
   },
-  addResource() {}
+  addResource(resource, amount) {
+    if ((this.resources.hasOwnProperty(resource)) && (amount > 0)) {
+      this.resources[resource] = this.resources[resource] + amount
+    } else {
+      console.log("Invalid resource")
+    }
+  }
 }
+
+// game.addResource("lumber", 60)
+// console.log(game)
