@@ -37,9 +37,9 @@ const map = (array, callback) => {
   return result
 }
 
-const callback = (element, index) => {
-  return element * 2
-}
+// const callback = (element, index) => {
+//   return element * 2
+// }
 
 // const output = map(numbers, callback)
 // console.log(output)
