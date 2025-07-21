@@ -27,3 +27,5 @@ const game = {
 
 // game.addResource("lumber", 60)
 // console.log(game)
+
+
