@@ -48,6 +48,7 @@ timerId = setInterval(() => {
     if (counter > 0) {
       countdownDisplay.textContent = counter;
     }else{
+      clearInterval(timerId)
       countdownDisplay.textContent = "🚀"
       isTimerStarted = false;
       startButton.disabled = false;
