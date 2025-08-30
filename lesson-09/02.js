@@ -63,6 +63,6 @@ function startTimer() {
 startButton.addEventListener('click', startTimer)
 cancelButton.addEventListener('click', () => {
     if (isTimerStarted) {           // 🚨 теперь отмена работает только во время работы
-    stopTimer('Остановлено')
+    stopTimer('Отменено')
   }
 })
