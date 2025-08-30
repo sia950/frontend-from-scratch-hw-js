@@ -30,40 +30,39 @@ const startButton = document.getElementById('start')
 const cancelButton = document.getElementById('cancel')
 const countdownDisplay = document.getElementById('countdown')
 
+let intervalId = null
 let isTimerStarted = false
-let timerId
-
-startButton.addEventListener('click', () => {
-if(isTimerStarted) return;
-isTimerStarted = true;
-let counter = 3
-  // your code
-
-  // Блокируем кнопку Start
-  startButton.disabled = true;
-  countdownDisplay.textContent = counter;
-timerId = setInterval(() => {
-    counter--
-
-    if (counter > 0) {
-      countdownDisplay.textContent = counter;
-    }else{
-      clearInterval(timerId)
-      timerId = null
-      countdownDisplay.textContent = "🚀"
-      isTimerStarted = false;
-      startButton.disabled = false;
+function stopTimer(finalText) {
+  if (intervalId !== null) {
+    clearInterval(intervalId)
+    intervalId = null
+  }
+  isTimerStarted = false
+  startButton.disabled = false
+  if (finalText !== undefined) {
+    countdownDisplay.textContent = finalText
+  }
+}
+function startTimer() {
+  if (isTimerStarted) return
+  stopTimer()
+  isTimerStarted = true
+  startButton.disabled = true
+  const maxCount = [3, 2, 1, '🚀']
+  let index = 0
+  countdownDisplay.textContent = maxCount[index]
+  intervalId = setInterval(() => {
+    if (index === maxCount.length - 1) {
+      stopTimer('🚀')
+      return
     }
-}, 1000)
-})
-
+    index += 1
+    countdownDisplay.textContent = maxCount[index]
+  }, 1000)
+}
+startButton.addEventListener('click', startTimer)
 cancelButton.addEventListener('click', () => {
-  // your code
-  if(!isTimerStarted) return;
-  
-  clearInterval(timerId)
-  timerId = null
-  countdownDisplay.textContent = "Отменено"
-  isTimerStarted = false;
-  startButton.disabled = false;
+    if (isTimerStarted) {           // 🚨 теперь отмена работает только во время работы
+    stopTimer('Остановлено')
+  }
 })
