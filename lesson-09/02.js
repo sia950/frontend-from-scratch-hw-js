@@ -28,41 +28,51 @@
 
 const startButton = document.getElementById('start')
 const cancelButton = document.getElementById('cancel')
-const countdownDisplay = document.getElementById('countdown')
+const countdownDisplay = document.getElementById('countdownDisplay')
 
 let intervalId = null
 let isTimerStarted = false
+
 function stopTimer(finalText) {
   if (intervalId !== null) {
     clearInterval(intervalId)
     intervalId = null
   }
   isTimerStarted = false
-  startButton.disabled = false
+  startButton.disabled = false       // ✅ возвращаем кнопку "Старт"
+  cancelButton.disabled = true       // ✅ отключаем "Отмена"
   if (finalText !== undefined) {
     countdownDisplay.textContent = finalText
   }
 }
+
 function startTimer() {
   if (isTimerStarted) return
-  stopTimer()
+
+  stopTimer()                         // сброс перед новым запуском
   isTimerStarted = true
   startButton.disabled = true
+  cancelButton.disabled = false       // ✅ включаем кнопку "Отмена"
+
   const maxCount = [3, 2, 1, '🚀']
   let index = 0
   countdownDisplay.textContent = maxCount[index]
+
   intervalId = setInterval(() => {
     if (index === maxCount.length - 1) {
-      stopTimer('🚀')
+      stopTimer('🚀')                 // ✅ по окончании кнопка снова активна
       return
     }
-    index += 1
+    index++
     countdownDisplay.textContent = maxCount[index]
   }, 1000)
 }
+
 startButton.addEventListener('click', startTimer)
+
 cancelButton.addEventListener('click', () => {
-    if (isTimerStarted) {           // 🚨 теперь отмена работает только во время работы
-    stopTimer('Отменено')
+  if (isTimerStarted) {
+    stopTimer('Отменено')          // ✅ и тут "Старт" снова активен
   }
 })
+
