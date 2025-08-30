@@ -25,54 +25,37 @@
 Подсказки:
 - 🧙‍♂️ Для выполнения этого задания нужно познакомиться с браузерными функциями setInterval (https://doka.guide/js/setinterval/) и clearInterval(https://doka.guide/js/clearinterval/). Они очень похоже на setTimeout и clearTimeout.
  */
-
 const startButton = document.getElementById('start')
 const cancelButton = document.getElementById('cancel')
-const countdownDisplay = document.getElementById('countdownDisplay')
+const countdownDisplay = document.getElementById('countdown')
 
-let intervalId = null
 let isTimerStarted = false
+let timerId
 
-function stopTimer(finalText) {
-  if (intervalId !== null) {
-    clearInterval(intervalId)
-    intervalId = null
-  }
-  isTimerStarted = false
-  startButton.disabled = false       // ✅ возвращаем кнопку "Старт"
-  cancelButton.disabled = true       // ✅ отключаем "Отмена"
-  if (finalText !== undefined) {
-    countdownDisplay.textContent = finalText
-  }
-}
+startButton.addEventListener('click', () => {
+  if (isTimerStarted) return // защита от повторного запуска
 
-function startTimer() {
-  if (isTimerStarted) return
-
-  stopTimer()                         // сброс перед новым запуском
   isTimerStarted = true
-  startButton.disabled = true
-  cancelButton.disabled = false       // ✅ включаем кнопку "Отмена"
+  let counter = 3
+  countdownDisplay.textContent = counter // сразу показываем "3"
 
-  const maxCount = [3, 2, 1, '🚀']
-  let index = 0
-  countdownDisplay.textContent = maxCount[index]
+  timerId = setInterval(() => {
+    counter--
 
-  intervalId = setInterval(() => {
-    if (index === maxCount.length - 1) {
-      stopTimer('🚀')                 // ✅ по окончании кнопка снова активна
-      return
+    if (counter > 0) {
+      countdownDisplay.textContent = counter
+    } else {
+      clearInterval(timerId)
+      countdownDisplay.textContent = '🚀'
+      isTimerStarted = false
     }
-    index++
-    countdownDisplay.textContent = maxCount[index]
   }, 1000)
-}
-
-startButton.addEventListener('click', startTimer)
+})
 
 cancelButton.addEventListener('click', () => {
   if (isTimerStarted) {
-    stopTimer('Отменено')          // ✅ и тут "Старт" снова активен
+    clearInterval(timerId)
+    countdownDisplay.textContent = 'Отменено'
+    isTimerStarted = false
   }
 })
-
